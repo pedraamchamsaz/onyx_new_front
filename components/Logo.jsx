@@ -10,7 +10,7 @@ const Logo = () => {
   return (
     <div className={bungee_shade.className}>
         <Link href='/'>
-            <div className='text-5xl text-red-600'>ONYX</div>
+            <div className='text-4xl text-red-600'>ONYX</div>
         </Link>
     </div>
   )
