@@ -12,7 +12,7 @@ const titan_one = Titan_One({
 const Navbar = () => {
   return (
     <header className='w-full absolute z-10'>
-      <nav className='px-6 sm:px-16 py-4 flex justify-between items-center'>
+      <nav className='px-6 lg:px-16 py-4 flex justify-between items-center'>
         <Logo />
         <div className={`${titan_one.className} hidden md:flex gap-20`}>
           <NavItems />
