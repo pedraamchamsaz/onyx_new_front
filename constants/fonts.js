@@ -1,6 +1,8 @@
 import { Titan_One } from 'next/font/google'
 import { Sedgwick_Ave_Display } from 'next/font/google'
 import { Madimi_One } from 'next/font/google'
+import 'material-symbols'
+
 
 export const titan_one = Titan_One({ 
     weight: '400',
