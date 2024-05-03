@@ -1,13 +1,41 @@
+"use client"
+
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import CustomFilters from "@/components/CustomFilters";
 import Card from "@/components/Card";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 import { titan_one } from "@/constants/fonts";
-import { events } from "@/constants";
+// import { events } from "@/constants";
+
+
 
 export default function Home() {
+
+  const [events, setEvents] = useState([])
+
+  const apiCall = async () => {
+      const response = await axios.get('http://localhost:3001/events')
+      setEvents(response.data)
+  }
+
+  useEffect(() => {
+    try {
+      apiCall()
+    } 
+    catch(e) {
+      console.log(e)
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log(events)
+  }, [events])
+  
+
   return (
     <main className="">
       <Navbar />
