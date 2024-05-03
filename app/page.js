@@ -15,11 +15,13 @@ import { titan_one } from "@/constants/fonts";
 
 export default function Home() {
 
-  const [events, setEvents] = useState([])
+  const [allEvents, setAllEvents] = useState([])
+  const [filteredEvents, setFilteredEvents] = useState([allEvents])
 
   const apiCall = async () => {
       const response = await axios.get('http://localhost:3001/events')
-      setEvents(response.data)
+      setAllEvents(response.data)
+      setFilteredEvents(response.data)
   }
 
   useEffect(() => {
@@ -30,10 +32,6 @@ export default function Home() {
       console.log(e)
     }
   }, [])
-
-  useEffect(() => {
-    console.log(events)
-  }, [events])
   
 
   return (
@@ -48,16 +46,20 @@ export default function Home() {
           <p className="mt-2">Explore events here</p>
         </div>
 
-        <CustomFilters />
+        <CustomFilters 
+          allEvents={allEvents}
+          setFilteredEvents={setFilteredEvents}
+        />
 
         <div className="px-6 sm:px-16 py-10 flex flex-wrap justify-start gap-5">
-          {events.map((event) => (
+          {filteredEvents.map((event) => (
             <Card 
               name={event.name}
               country={event.country}
               price={event.price}
             />
-          ))}
+          ))
+          }
         </div>
       </div>
 

@@ -47,6 +47,7 @@ export const filters = [
   { name: "Cooking Classes", image: "skillet" },
   { name: "Yoga & Meditation", image: "self_improvement" },
   { name: "Art & Creativity", image: "palette" },
+  { name: "Music Classes", image: "music_note" },
   { name: "Fitness", image: "fitness_center" },
   { name: "Language Learning", image: "language_chinese_quick" },
   { name: "Virtual Tours", image: "explore" },
