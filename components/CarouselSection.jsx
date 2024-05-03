@@ -2,10 +2,11 @@ import { filters } from "@/constants"
 
 const CarouselSection = () => {
   return (
-    <div className="flex">
+    <div className="flex gap-10 mt-5">
         {filters.map((filter) => (
-            <div key={filter.name}>
-                {filter.name}
+            <div key={filter.name} className="flex flex-col items-center">
+                <span className="material-symbols-outlined">{filter.image}</span>
+                <p className="text-[10px] text-center mt-2">{filter.name}</p>
             </div>
         ))}
     </div>
