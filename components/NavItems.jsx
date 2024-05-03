@@ -1,13 +1,14 @@
 import { headerLinks } from '@/constants'
 import Link from 'next/link'
 
-const NavItems = () => {
+const NavItems = ({classStyles, itemStyles}) => {
   return (
-    <ul className='flex flex-col md:flex-row md:gap-20'>
+    <ul className={`${classStyles}`}>
         {headerLinks.map((link) => {
             return (
                 <li
-                    key={link.route}    
+                    key={link.route}
+                    className={`${itemStyles}`}
                 >
                     <Link href={link.route}>{link.label}</Link>
                 </li>

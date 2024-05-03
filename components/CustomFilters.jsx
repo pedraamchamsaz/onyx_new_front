@@ -1,4 +1,4 @@
-import CarouselSection from "./CarouselSection"
+import { filters } from "@/constants"
 
 import {
     Carousel,
@@ -11,11 +11,16 @@ import {
 
 const CustomFilters = () => {
   return (
-    <div className='px-6 sm:px-16 border-t sticky top-0'>
+    <div className='px-6 sm:px-16 border-t sticky top-0 bg-white'>
         <Carousel>
             <CarouselContent>
-                <CarouselItem>
-                    <CarouselSection />
+                <CarouselItem className="basis-full flex gap-10 mt-5">
+                    {filters.map((filter) => (
+                        <div key={filter.name} className="flex flex-col items-center hover:border-b-4 text-gray-500 hover:text-black transition">
+                            <span className="material-symbols-outlined">{filter.image}</span>
+                            <p className="text-[10px] text-center mt-2">{filter.name}</p>
+                        </div>
+                    ))}
                 </CarouselItem>
                 <CarouselItem></CarouselItem>
                 <CarouselItem></CarouselItem>
