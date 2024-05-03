@@ -79,7 +79,7 @@ export const filters = [
   { name: "Architecture Tours", image: "architecture" },
   { name: "Online Concerts", image: "music_video" },
   { name: "Calligraphy Classes", image: "title" },
-  { name: "Mountain Biking Adventures", image: "pedal_bike" },
+  { name: "Book Clubs", image: "book_2" },
   { name: "Yoga Retreats", image: "nature_people" },
   { name: "Pottery Making", image: "emoji_objects" },
   { name: "Dance Parties", image: "audiotrack" },

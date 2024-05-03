@@ -11,14 +11,15 @@ import {
 
 const CustomFilters = () => {
   return (
-    <div className='px-6 sm:px-16 border-t'>
+    <div className='px-6 sm:px-16 border-t sticky top-0'>
         <Carousel>
             <CarouselContent>
                 <CarouselItem>
                     <CarouselSection />
                 </CarouselItem>
-                <CarouselItem>...</CarouselItem>
-                <CarouselItem>...</CarouselItem>
+                <CarouselItem></CarouselItem>
+                <CarouselItem></CarouselItem>
+                <CarouselItem></CarouselItem>
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />

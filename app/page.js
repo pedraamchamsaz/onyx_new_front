@@ -20,6 +20,10 @@ export default function Home() {
         <CustomFilters />
       </div>
 
+      <div>
+        
+      </div>
+
       <Footer />
     </main>
   );
