@@ -8,8 +8,8 @@ const Hero = () => {
   return (
     <div className='pt-24 flex xl:flex-row flex-col z-0 max-w-[1440px] mx-auto items-center bg-[#FFE7C3]'>
       <div className='flex flex-col xl:items-start items-center gap-14 flex-1 px-6 sm:px-16'>
-        <h1 className={`${titan_one.className} xl:text-left text-center text-7xl font-extrabold text-orange-600`}>
-          World-class experiences at your fingertips
+        <h1 className={`${titan_one.className} xl:text-left text-center text-6xl font-extrabold text-orange-600`}>
+          World-class experiences from the comfort of your home
         </h1>
         <Link href='#events'>
             <CustomButton 
