@@ -9,6 +9,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 import { titan_one } from "@/constants/fonts";
+import Link from "next/link";
 // import { events } from "@/constants";
 
 export default function Home() {
@@ -50,11 +51,16 @@ export default function Home() {
 
         <div className="px-6 sm:px-16 py-10 flex flex-wrap justify-start gap-5">
           {filteredEvents.map((event) => (
-            <Card
-              name={event.name}
-              country={event.country}
-              price={event.price}
-            />
+            <Link
+              href={`/${event._id}`}
+              target="_blank"
+            >
+              <Card
+                name={event.name}
+                country={event.country}
+                price={event.price}
+              />
+            </Link>
           ))}
         </div>
       </div>

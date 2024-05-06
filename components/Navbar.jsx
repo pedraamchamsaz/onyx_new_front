@@ -78,10 +78,10 @@ const Navbar = () => {
               </DropdownMenuItem>
               <DropdownMenuSeparator /> */}
               <DropdownMenuItem>
-                <LoginLink>Sign in</LoginLink>
+                <LoginLink>Log In</LoginLink>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <RegisterLink>Sign up</RegisterLink>
+                <RegisterLink>Sign Up</RegisterLink>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
