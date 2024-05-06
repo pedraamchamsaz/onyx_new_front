@@ -2,6 +2,17 @@ import Logo from './Logo'
 import Image from 'next/image'
 import { Titan_One } from 'next/font/google'
 import NavItems from './NavItems'
+import {RegisterLink, LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import { headerLinks } from '@/constants';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 const titan_one = Titan_One({ 
   weight: '400',
@@ -20,14 +31,40 @@ const Navbar = () => {
           />
         </div>
         <div className='flex gap-10 items-center'>
-          <span className="material-symbols-outlined text-black/70 md:invisible scale-[1.7]">menu</span>
-          <Image 
-            src='/pic.png'
-            width={60}
-            height={60}
-            alt='login picture'
-            className='rounded-full object-cover'
-          />
+
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <span className="material-symbols-outlined text-black/70 md:invisible scale-[1.7]">menu</span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {headerLinks.map((link) => (
+                <DropdownMenuItem>{link.label}</DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+        
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Image 
+              src='/pic.png'
+              width={60}
+              height={60}
+              alt='login picture'
+              className='rounded-full object-cover'
+            />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <LoginLink>Sign in</LoginLink>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <RegisterLink>Sign up</RegisterLink>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </nav>
     </header>
