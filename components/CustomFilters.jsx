@@ -19,7 +19,7 @@ const CustomFilters = ({ allEvents, setFilteredEvents }) => {
     <div className="px-6 sm:px-16 border-t sticky top-0 bg-white">
       <Carousel>
         <CarouselContent className='flex flex-none'>
-          <CarouselItem className="flex gap-10 mt-5 overflow-hidden">
+          <CarouselItem className="flex gap-10 mt-5 overflow-scroll">
             {filters.slice(0, 13).map((filter) => (
               <div
                 key={filter.name}
@@ -33,7 +33,7 @@ const CustomFilters = ({ allEvents, setFilteredEvents }) => {
               </div>
             ))}
           </CarouselItem>
-          <CarouselItem className="flex gap-10 mt-5 overflow-hidden">
+          <CarouselItem className="flex gap-10 mt-5 overflow-scroll">
             {filters.slice(14, 28).map((filter) => (
               <div
                 key={filter.name}
