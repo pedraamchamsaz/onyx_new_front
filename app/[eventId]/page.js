@@ -5,6 +5,13 @@ import axios from "axios";
 import { titan_one } from "@/constants/fonts";
 import Footer from "@/components/Footer";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 export default async function Event({ params }) {
   const getEvent = async (id) => {
     const response = await axios.get(`http://localhost:3001/events/${id}`);
@@ -26,7 +33,7 @@ export default async function Event({ params }) {
           <p className="bg-orange-400 inline-block px-2 uppercase">
             {event.category}
           </p>
-          <h1 className={`${titan_one.className} text-4xl py-2`}>
+          <h1 className={`${titan_one.className} text-5xl py-3`}>
             {event.name}
           </h1>
           <p className="text-sm">{event.country}</p>
@@ -38,7 +45,7 @@ export default async function Event({ params }) {
             </button>
           </div>
 
-          <div className="py-5">
+          <div className="pt-5">
             <h2 className="text-2xl font-bold">Overview</h2>
             <p className="py-3">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nisi
@@ -57,10 +64,36 @@ export default async function Event({ params }) {
             </p>
           </div>
 
-          <div className="border-t border-black py-5">
+          <Accordion type="single" collapsible className="py-4">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Is it styled?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It comes with default styles that matches the other
+                components' aesthetic.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Is it animated?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It's animated by default, but you can disable it if you
+                prefer.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          <div className="py-5">
             <div className="flex gap-5 items-center">
               <div className="h-10 w-10 rounded-full">
-                <img src="/pic.png" className="object-cover h-10 rounded-full"/>
+                <img
+                  src="/pic.png"
+                  className="object-cover h-10 rounded-full"
+                />
               </div>
               <h2 className="text-2xl font-bold">Meet your host</h2>
             </div>
