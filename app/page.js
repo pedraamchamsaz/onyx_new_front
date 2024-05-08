@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -9,30 +9,26 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 import { titan_one } from "@/constants/fonts";
+import Link from "next/link";
 // import { events } from "@/constants";
 
-
-
 export default function Home() {
-
-  const [allEvents, setAllEvents] = useState([])
-  const [filteredEvents, setFilteredEvents] = useState([allEvents])
+  const [allEvents, setAllEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([allEvents]);
 
   const apiCall = async () => {
-      const response = await axios.get('http://localhost:3001/events')
-      setAllEvents(response.data)
-      setFilteredEvents(response.data)
-  }
+    const response = await axios.get("http://localhost:3001/events");
+    setAllEvents(response.data);
+    setFilteredEvents(response.data);
+  };
 
   useEffect(() => {
     try {
-      apiCall()
-    } 
-    catch(e) {
-      console.log(e)
+      apiCall();
+    } catch (e) {
+      console.log(e);
     }
-  }, [])
-  
+  }, []);
 
   return (
     <main className="">
@@ -40,26 +36,32 @@ export default function Home() {
 
       <Hero />
 
-      <div id='events' className="bg-white">
+      <div id="events" className="bg-white">
         <div className="px-6 sm:px-16 py-10">
-          <h1 className={`${titan_one.className} text-5xl font-bold`}>Event Catalogue</h1>
+          <h1 className={`${titan_one.className} text-5xl font-bold`}>
+            Event Catalogue
+          </h1>
           <p className="mt-2">Explore events here</p>
         </div>
 
-        <CustomFilters 
+        <CustomFilters
           allEvents={allEvents}
           setFilteredEvents={setFilteredEvents}
         />
 
         <div className="px-6 sm:px-16 py-10 flex flex-wrap justify-start gap-5">
           {filteredEvents.map((event) => (
-            <Card 
-              name={event.name}
-              country={event.country}
-              price={event.price}
-            />
-          ))
-          }
+            <Link
+              href={`/${event._id}`}
+              target="_blank"
+            >
+              <Card
+                name={event.name}
+                country={event.country}
+                price={event.price}
+              />
+            </Link>
+          ))}
         </div>
       </div>
 
