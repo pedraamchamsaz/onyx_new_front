@@ -47,7 +47,7 @@ export default async function Event({ params }) {
 
           <div className="pt-5">
             <h2 className="text-2xl font-bold">Overview</h2>
-            <p className="py-3">
+            <p className="pt-3">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nisi
               elit, pulvinar tempus dignissim nec, pulvinar mattis ex. Integer
               pretium ex eget scelerisque imperdiet. Phasellus suscipit, diam
