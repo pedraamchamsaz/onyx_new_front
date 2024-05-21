@@ -59,6 +59,7 @@ export default function Home() {
                 name={event.name}
                 country={event.country}
                 price={event.price}
+                image={event.image}
               />
             </Link>
           ))}

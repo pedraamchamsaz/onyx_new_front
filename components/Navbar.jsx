@@ -107,6 +107,13 @@ const Navbar = () => {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
+                  <Link href='/'>Profile</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href='/create'>Create Event</Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
                   <LogoutLink>Log Out</LogoutLink>
                 </DropdownMenuItem>
               </DropdownMenuContent>
