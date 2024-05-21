@@ -8,6 +8,18 @@ const nextConfig = {
             port: '',
             pathname: '/a/**',
           },
+          {
+            protocol: 'https',
+            hostname: 'i.natgeofe.com',
+            port: '',
+            pathname: '/n/**',
+          },
+          {
+            protocol: 'https',
+            hostname: 'dynamic-media-cdn.tripadvisor.com',
+            port: '',
+            pathname: '/media/**',
+          },
         ],
       }
 };

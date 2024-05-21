@@ -49,16 +49,17 @@ export default function Home() {
           setFilteredEvents={setFilteredEvents}
         />
 
-        <div className="px-6 sm:px-16 py-10 flex flex-wrap justify-start gap-5">
+        <div className="px-10 md:px-20 lg:px-32 xl:px-24 py-10 flex flex-wrap justify-start gap-5">
           {filteredEvents.map((event) => (
             <Link
-              href={`/${event._id}`}
+              href={`/events/${event._id}`}
               target="_blank"
             >
               <Card
                 name={event.name}
                 country={event.country}
                 price={event.price}
+                image={event.image}
               />
             </Link>
           ))}
