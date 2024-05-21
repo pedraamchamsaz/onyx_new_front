@@ -5,7 +5,7 @@ import NavItems from "./NavItems";
 import {
   RegisterLink,
   LoginLink,
-  LogoutLink
+  LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { headerLinks } from "@/constants";
 import {
@@ -22,23 +22,38 @@ const titan_one = Titan_One({
 });
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import Link from "next/link";
+import CustomButton from "./CustomButton";
 
 const Navbar = () => {
-
   const { user } = useKindeBrowserClient();
 
   return (
     <header className="w-full absolute z-10">
-      <nav className="px-6 lg:px-16 py-4 flex justify-between items-center">
+      <nav className="px-6 lg:px-16 py-4 flex justify-between">
         <Logo />
-        <div className={`${titan_one.className} hidden md:flex box-content`}>
+        {/* <div className={`${titan_one.className} hidden md:flex box-content`}>
           <NavItems
             classStyles="flex gap-20"
             itemStyles="hover:border-b-4 hover:border-orange-600 hover:scale-110 transition border-b-4 border-black/0"
           />
-        </div>
-        <div className="flex gap-10 items-center">
-          <DropdownMenu>
+        </div> */}
+
+        <div className="flex items-center gap-10">
+
+          <Link href='/create' className="max-md:hidden" target='_blank'>
+            <CustomButton
+              buttonStyles="text-sm font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-full px-6 py-3 max-w-[200px] hover:scale-105 transition"
+              buttonText="CREATE EVENT +"
+            />
+          </Link>
+          <Link href='/create' className="md:hidden" target='_blank'>
+            <CustomButton
+              buttonStyles="text-2xl font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-full px-6 py-1 w-[80px] hover:scale-105 transition"
+              buttonText="+"
+            />
+          </Link>
+
+          {/* <DropdownMenu>
             <DropdownMenuTrigger>
               <span className="material-symbols-outlined text-black/70 md:invisible scale-[1.7]">
                 menu
@@ -51,45 +66,43 @@ const Navbar = () => {
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenu> */}
 
           <DropdownMenu>
             <DropdownMenuTrigger>
-              {user?.picture ? 
-                (<Image
-                src={`${user.picture}`}
-                width={60}
-                height={60}
-                alt="login picture"
-                className="rounded-full object-cover"
-              />
-            ) : (
-              <span className="material-symbols-outlined text-black/70 scale-[2.2]">
-                account_circle
-              </span>
-            )
-            }
+              {user?.picture ? (
+                <Image
+                  src={`${user.picture}`}
+                  width={60}
+                  height={60}
+                  alt="login picture"
+                  className="rounded-full object-cover"
+                />
+              ) : (
+                <span className="material-symbols-outlined text-black/70 scale-[2.2]">
+                  account_circle
+                </span>
+              )}
             </DropdownMenuTrigger>
 
             {!user ? (
-            <DropdownMenuContent>
-              {/* <DropdownMenuItem>
+              <DropdownMenuContent>
+                {/* <DropdownMenuItem>
                 <LoginLink>Profile</LoginLink>
               </DropdownMenuItem>
               <DropdownMenuSeparator /> */}
-              <DropdownMenuItem>
-                <LoginLink>Log In</LoginLink>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <RegisterLink>Sign Up</RegisterLink>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Link href='/'>Settings</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-            ) : 
-            (
+                <DropdownMenuItem>
+                  <LoginLink>Log In</LoginLink>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <RegisterLink>Sign Up</RegisterLink>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Link href="/">Settings</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            ) : (
               <DropdownMenuContent>
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -97,9 +110,7 @@ const Navbar = () => {
                   <LogoutLink>Log Out</LogoutLink>
                 </DropdownMenuItem>
               </DropdownMenuContent>
-              )
-          }
-
+            )}
           </DropdownMenu>
         </div>
       </nav>
