@@ -7,20 +7,16 @@ export default function App() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
     try {
-      // Post data using axios
       const response = await axios.post("http://localhost:3001/events", data);
       console.log("Response:", response.data);
     } catch (error) {
       console.error("Error posting data:", error);
     }
   };
-
-//   console.log(watch("example")); // watch input value by passing the name of it
 
   return (
     <form
@@ -35,7 +31,9 @@ export default function App() {
             {...register("name", { required: true })}
             className="border p-2 rounded-lg text-sm"
           />
-          {errors.name && <span className="text-xs text-red-500">This field is required</span>}
+          {errors.name && (
+            <span className="text-xs text-red-500">This field is required</span>
+          )}
         </div>
         <div className="flex flex-col gap-2 w-full">
           <h4 className="text-xs font-semibold">Date</h4>
@@ -44,7 +42,9 @@ export default function App() {
             className="border p-2 rounded-lg text-sm"
             type="date"
           />
-          {errors.date && <span className="text-xs text-red-500">This field is required</span>}
+          {errors.date && (
+            <span className="text-xs text-red-500">This field is required</span>
+          )}
         </div>
         {/* <div className="flex flex-col gap-2 w-full">
           <h4 className="text-xs font-semibold">Time</h4>
@@ -61,7 +61,9 @@ export default function App() {
             {...register("category", { required: true })}
             className="border p-2 rounded-lg text-sm"
           />
-          {errors.category && <span className="text-xs text-red-500">This field is required</span>}
+          {errors.category && (
+            <span className="text-xs text-red-500">This field is required</span>
+          )}
         </div>
         <div className="flex flex-col gap-2 w-full">
           <h4 className="text-xs font-semibold">Country</h4>
@@ -69,7 +71,9 @@ export default function App() {
             {...register("country", { required: true })}
             className="border p-2 rounded-lg text-sm"
           />
-          {errors.country && <span className="text-xs text-red-500">This field is required</span>}
+          {errors.country && (
+            <span className="text-xs text-red-500">This field is required</span>
+          )}
         </div>
         <div className="flex flex-col gap-2 w-full">
           <h4 className="text-xs font-semibold">Event Image</h4>
@@ -77,7 +81,9 @@ export default function App() {
             {...register("image", { required: true })}
             className="border p-2 rounded-lg text-sm"
           />
-          {errors.image && <span className="text-xs text-red-500">This field is required</span>}
+          {errors.image && (
+            <span className="text-xs text-red-500">This field is required</span>
+          )}
         </div>
         <div className="flex flex-col gap-2 w-full">
           <h4 className="text-xs font-semibold">Price</h4>
@@ -86,7 +92,9 @@ export default function App() {
             type="number"
             className="border p-2 rounded-lg text-sm"
           />
-          {errors.price && <span className="text-xs text-red-500">This field is required</span>}
+          {errors.price && (
+            <span className="text-xs text-red-500">This field is required</span>
+          )}
         </div>
         <div className="flex flex-col gap-2 w-full">
           <h4 className="text-xs font-semibold">Overview</h4>
@@ -96,7 +104,9 @@ export default function App() {
             className="border p-2 rounded-lg text-sm"
             rows="5"
           />
-          {errors.overview && <span className="text-xs text-red-500">This field is required</span>}
+          {errors.overview && (
+            <span className="text-xs text-red-500">This field is required</span>
+          )}
         </div>
         <div className="flex flex-col gap-2 w-full">
           <h4 className="text-xs font-semibold">What happens on the day?</h4>
@@ -106,7 +116,9 @@ export default function App() {
             className="border p-2 rounded-lg text-sm"
             rows="5"
           />
-          {errors.onTheDay && <span className="text-xs text-red-500">This field is required</span>}
+          {errors.onTheDay && (
+            <span className="text-xs text-red-500">This field is required</span>
+          )}
         </div>
         <div className="flex flex-col gap-2 w-full">
           <h4 className="text-xs font-semibold">Refund Policy</h4>
@@ -116,7 +128,9 @@ export default function App() {
             className="border p-2 rounded-lg text-sm"
             rows="5"
           />
-          {errors.refund && <span className="text-xs text-red-500">This field is required</span>}
+          {errors.refund && (
+            <span className="text-xs text-red-500">This field is required</span>
+          )}
         </div>
         <div className="flex flex-col gap-2 w-full">
           <h4 className="text-xs font-semibold">Participant Guidelines</h4>
@@ -126,7 +140,9 @@ export default function App() {
             className="border p-2 rounded-lg text-sm"
             rows="5"
           />
-          {errors.guidelines && <span className="text-xs text-red-500">This field is required</span>}
+          {errors.guidelines && (
+            <span className="text-xs text-red-500">This field is required</span>
+          )}
         </div>
         <input
           type="submit"

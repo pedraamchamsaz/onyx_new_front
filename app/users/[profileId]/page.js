@@ -3,12 +3,12 @@
 import Card from "@/components/Card";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { titan_one } from "@/constants/fonts";
+import Bio from "@/components/Bio";
 
 const page = () => {
   const [allEvents, setAllEvents] = useState([]);
@@ -28,19 +28,22 @@ const page = () => {
     }
   }, []);
 
+
   return (
     <div className="bg-[#FFE7C3]">
       <Navbar />
 
       <div className="flex max-md:flex-col gap-5 lg:gap-14 px-6 sm:px-16 pt-24 mb-10">
-        <div>
+        <Bio />
+        {/* <div>
           <div className="flex flex-col gap-8 p-6 rounded-[15px] shadow-2xl --tw-shadow-color: #1e293b; w-[300px]">
             <div className="flex flex-col items-center">
               <Image
                 src="/pic.png"
                 width={100}
                 height={100}
-                className="rounded-full"
+                className="rounded-full w-auto"
+                alt="Profile Pic"
               />
               <h1 className="pt-4 font-bold text-2xl">Pedraam</h1>
               <p className="text-sm">Host</p>
@@ -72,10 +75,14 @@ const page = () => {
           </div>
 
           <div></div>
-        </div>
+        </div> */}
 
         <div>
-          <h1 className={`${titan_one.className} text-5xl font-bold text-center md:text-left px-16 `}>Events</h1>
+          <h1
+            className={`${titan_one.className} text-5xl font-bold text-center md:text-left px-16 `}
+          >
+            Events
+          </h1>
           <div className="px-6 sm:px-16 py-10 flex flex-wrap justify-center md:justify-start gap-5">
             {filteredEvents.map((event) => (
               <Link href={`/events/${event._id}`} target="_blank">
@@ -83,6 +90,7 @@ const page = () => {
                   name={event.name}
                   country={event.country}
                   price={event.price}
+                  image={event.image}
                 />
               </Link>
             ))}

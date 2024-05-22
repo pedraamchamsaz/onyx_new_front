@@ -1,13 +1,10 @@
 import Logo from "./Logo";
 import Image from "next/image";
-import { Titan_One } from "next/font/google";
-import NavItems from "./NavItems";
 import {
   RegisterLink,
   LoginLink,
   LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
-import { headerLinks } from "@/constants";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,10 +13,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-const titan_one = Titan_One({
-  weight: "400",
-  subsets: ["latin"],
-});
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import Link from "next/link";
 import CustomButton from "./CustomButton";
@@ -50,7 +43,7 @@ const Navbar = () => {
             </Link>
           ) : (
             <CustomButton
-              buttonStyles="text-sm font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-full px-6 py-3 max-w-[200px] hover:scale-105 transition"
+              buttonStyles="max-md:hidden text-sm font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-full px-6 py-3 max-w-[200px] hover:scale-105 transition"
               buttonText="CREATE EVENT +"
               click={() => {
                 toast({
@@ -121,7 +114,7 @@ const Navbar = () => {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Link href="/">Profile</Link>
+                  <Link href={`/users/${user.id}`}>Profile</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Link href="/create">Create Event</Link>

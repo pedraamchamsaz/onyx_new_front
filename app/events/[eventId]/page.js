@@ -25,8 +25,8 @@ export default async function Event({ params }) {
       <Navbar />
 
       <div className="flex max-lg:flex-col gap-5 lg:gap-14 px-6 sm:px-16 pt-24">
-        <div className="object-cover sticky">
-          <img src="/dancer.jpg" className="rounded-[15px]" />
+        <div className="object-cover sticky min-w-[400px]">
+          <img src={event.image} className="rounded-[15px]" />
         </div>
 
         <div className="max-w-[600px]">
@@ -48,41 +48,27 @@ export default async function Event({ params }) {
           <div className="pt-5">
             <h2 className="text-2xl font-bold">Overview</h2>
             <p className="pt-3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nisi
-              elit, pulvinar tempus dignissim nec, pulvinar mattis ex. Integer
-              pretium ex eget scelerisque imperdiet. Phasellus suscipit, diam
-              vel elementum sagittis, orci sem porta tellus, vitae faucibus leo
-              ante vel urna. Vestibulum pulvinar, odio ac dictum viverra, diam
-              massa congue odio, quis rutrum lacus tortor ut felis. Praesent sed
-              velit consequat, laoreet elit eu, auctor risus. Donec luctus
-              tortor non aliquet blandit. Nulla facilisi. Interdum et malesuada
-              fames ac ante ipsum primis in faucibus. Integer finibus purus
-              eros, ac accumsan ipsum posuere id. Morbi at nulla posuere,
-              commodo lacus non, bibendum dui. Suspendisse consectetur convallis
-              lorem, mattis vestibulum arcu varius eget. Cras quis felis cursus,
-              auctor risus vel, venenatis purus.
+              {event.overview}
             </p>
           </div>
 
           <Accordion type="single" collapsible className="py-4">
             <AccordionItem value="item-1">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionTrigger>What happens on the day?</AccordionTrigger>
               <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
+                {event.onTheDay}
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>Is it styled?</AccordionTrigger>
+              <AccordionTrigger>Refund Policy</AccordionTrigger>
               <AccordionContent>
-                Yes. It comes with default styles that matches the other
-                components' aesthetic.
+                {event.refund}
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-              <AccordionTrigger>Is it animated?</AccordionTrigger>
+              <AccordionTrigger>Participant Guidelines</AccordionTrigger>
               <AccordionContent>
-                Yes. It's animated by default, but you can disable it if you
-                prefer.
+                {event.guidelines}
               </AccordionContent>
             </AccordionItem>
           </Accordion>
