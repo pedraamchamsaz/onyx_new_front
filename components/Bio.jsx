@@ -38,10 +38,10 @@ const Bio = () => {
       <div className="flex flex-col gap-8 p-6 rounded-[15px] shadow-2xl --tw-shadow-color: #1e293b; w-[300px]">
         <div className="flex flex-col items-center">
           <Image
-            src="/pic.png"
+            src={user?.picture}
             width={100}
             height={100}
-            className="rounded-full w-auto"
+            className="rounded-full"
             alt="Profile Pic"
           />
           {isLoading ? (
