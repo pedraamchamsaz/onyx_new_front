@@ -39,14 +39,20 @@ const Navbar = () => {
         </div> */}
 
         <div className="flex items-center gap-10">
-
-          <Link href='/create' className="max-md:hidden" target='_blank'>
+          {user ? (
+            <Link href="/create" className="max-md:hidden" target="_blank">
+              <CustomButton
+                buttonStyles="text-sm font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-full px-6 py-3 max-w-[200px] hover:scale-105 transition"
+                buttonText="CREATE EVENT +"
+              />
+            </Link>
+          ) : (
             <CustomButton
               buttonStyles="text-sm font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-full px-6 py-3 max-w-[200px] hover:scale-105 transition"
               buttonText="CREATE EVENT +"
             />
-          </Link>
-          <Link href='/create' className="md:hidden" target='_blank'>
+          )}
+          <Link href="/create" className="md:hidden" target="_blank">
             <CustomButton
               buttonStyles="text-2xl font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-full px-6 py-1 w-[80px] hover:scale-105 transition"
               buttonText="+"
@@ -107,10 +113,10 @@ const Navbar = () => {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Link href='/'>Profile</Link>
+                  <Link href="/">Profile</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href='/create'>Create Event</Link>
+                  <Link href="/create">Create Event</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
