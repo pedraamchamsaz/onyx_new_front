@@ -23,9 +23,11 @@ const titan_one = Titan_One({
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import Link from "next/link";
 import CustomButton from "./CustomButton";
+import { useToast } from "@/components/ui/use-toast";
 
 const Navbar = () => {
   const { user } = useKindeBrowserClient();
+  const { toast } = useToast();
 
   return (
     <header className="w-full absolute z-10">
@@ -50,6 +52,12 @@ const Navbar = () => {
             <CustomButton
               buttonStyles="text-sm font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-full px-6 py-3 max-w-[200px] hover:scale-105 transition"
               buttonText="CREATE EVENT +"
+              click={() => {
+                toast({
+                  title: "Uh oh!",
+                  description: "Please log in to create events",
+                });
+              }}
             />
           )}
           <Link href="/create" className="md:hidden" target="_blank">
