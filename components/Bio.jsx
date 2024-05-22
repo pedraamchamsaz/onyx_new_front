@@ -34,7 +34,7 @@ const Bio = () => {
   //     });
 
   return (
-    <div>
+    <div className="mx-auto">
       <div className="flex flex-col gap-8 p-6 rounded-[15px] shadow-2xl --tw-shadow-color: #1e293b; w-[300px]">
         <div className="flex flex-col items-center">
           <Image
