@@ -130,7 +130,7 @@ const page = () => {
           <div></div>
         </div> */}
 
-        <div className="min-w-[800px]">
+        <div className="lg:w-[800px] flex-1">
           <h1
             className={`${titan_one.className} text-5xl font-bold text-center md:text-left px-16 `}
           >
