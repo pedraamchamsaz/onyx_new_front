@@ -2,21 +2,28 @@
 
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 export default function App() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm();
+
   const onSubmit = async (data) => {
     try {
+      data.userId = user.id
       const response = await axios.post("http://localhost:3001/events", data);
       console.log("Response:", response.data);
+      reset()
     } catch (error) {
       console.error("Error posting data:", error);
     }
   };
+
+  const { user, isLoading } = useKindeBrowserClient();
 
   return (
     <form
