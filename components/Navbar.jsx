@@ -48,7 +48,7 @@ const Navbar = () => {
               click={() => {
                 toast({
                   title: "Uh oh!",
-                  description: "Please log in to create events",
+                  description: `Please log in to create events`,
                 });
               }}
             />

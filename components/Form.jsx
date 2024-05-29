@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { filters } from "@/constants";
 
 export default function App() {
   const {
@@ -23,7 +24,7 @@ export default function App() {
     }
   };
 
-  const { user, isLoading } = useKindeBrowserClient();
+  const { user } = useKindeBrowserClient();
 
   return (
     <form
@@ -64,10 +65,15 @@ export default function App() {
         </div> */}
         <div className="flex flex-col gap-2 w-full">
           <h4 className="text-xs font-semibold">Category</h4>
-          <input
+          <select
             {...register("category", { required: true })}
             className="border p-2 rounded-lg text-sm"
-          />
+          >
+            <option></option>
+            {filters.map(filter => (
+              <option>{filter.name}</option>
+            ))}
+          </select>
           {errors.category && (
             <span className="text-xs text-red-500">This field is required</span>
           )}
