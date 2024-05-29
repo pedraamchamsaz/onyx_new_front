@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import axios from "axios";
 import { titan_one } from "@/constants/fonts";
 import Footer from "@/components/Footer";
+import { loadStripe } from "@stripe/stripe-js";
 
 import {
   Accordion,
@@ -20,13 +21,45 @@ export default async function Event({ params }) {
   const event = await getEvent(params.eventId);
   console.log(event);
 
+  const makePayment = async () => {
+    const stripe = await loadStripe("pk_test_51PIpzfFrCOgMMaMHCZc1KipvJQQJzZQ03Picgjuv645BfSjTaYT8ScruivAQJiuglDpU014wjaUSgF9oGd93GreL00ELwnUhbA")
+    
+    const body = {
+      products: [event]
+    }
+
+    const headers = {
+      "Content-Type": "application/json"
+    }
+
+    // const response = axios.post('http://localhost:3001/events/create-checkout-session', body, {
+    //   headers: headers
+    // })
+
+    const response = await fetch('http://localhost:3001/events/create-checkout-session',{
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(body)
+    })
+
+    const session = await response.json()
+
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id
+    })
+
+    if (result.error) {
+      console.log(result.errror)
+    }
+  };
+
   return (
     <div className="bg-[#FFE7C3]">
       <Navbar />
 
       <div className="flex max-lg:flex-col gap-5 lg:gap-14 px-6 sm:px-16 pt-24">
-        <div className="object-cover sticky">
-          <img src="/dancer.jpg" className="rounded-[15px]" />
+        <div className="object-cover sticky min-w-[400px]">
+          <img src={event.image} className="rounded-[15px]" />
         </div>
 
         <div className="max-w-[600px]">
@@ -36,54 +69,36 @@ export default async function Event({ params }) {
           <h1 className={`${titan_one.className} text-5xl py-3`}>
             {event.name}
           </h1>
-          <p className="text-sm">{event.country}</p>
+          <p className="font-bold text-lg">{event.date}</p>
+          <p className="text-sm pt-2">{event.country}</p>
 
           <div className="flex justify-between gap-10 mt-5 border-y border-black py-5">
             <p className="text-4xl font-extrabold">£{event.price}</p>
-            <button className="bg-orange-700 hover:bg-orange-600 transition w-full rounded-[12px] text-white font-bold">
+            <button
+              className="bg-orange-700 hover:bg-orange-600 transition w-full rounded-[12px] text-white font-bold"
+              onClick={makePayment}
+            >
               Book Now
             </button>
           </div>
 
           <div className="pt-5">
             <h2 className="text-2xl font-bold">Overview</h2>
-            <p className="pt-3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nisi
-              elit, pulvinar tempus dignissim nec, pulvinar mattis ex. Integer
-              pretium ex eget scelerisque imperdiet. Phasellus suscipit, diam
-              vel elementum sagittis, orci sem porta tellus, vitae faucibus leo
-              ante vel urna. Vestibulum pulvinar, odio ac dictum viverra, diam
-              massa congue odio, quis rutrum lacus tortor ut felis. Praesent sed
-              velit consequat, laoreet elit eu, auctor risus. Donec luctus
-              tortor non aliquet blandit. Nulla facilisi. Interdum et malesuada
-              fames ac ante ipsum primis in faucibus. Integer finibus purus
-              eros, ac accumsan ipsum posuere id. Morbi at nulla posuere,
-              commodo lacus non, bibendum dui. Suspendisse consectetur convallis
-              lorem, mattis vestibulum arcu varius eget. Cras quis felis cursus,
-              auctor risus vel, venenatis purus.
-            </p>
+            <p className="pt-3 overflow-hidden">{event.overview}</p>
           </div>
 
           <Accordion type="single" collapsible className="py-4">
             <AccordionItem value="item-1">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
+              <AccordionTrigger>What happens on the day?</AccordionTrigger>
+              <AccordionContent>{event.onTheDay}</AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>Is it styled?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It comes with default styles that matches the other
-                components' aesthetic.
-              </AccordionContent>
+              <AccordionTrigger>Refund Policy</AccordionTrigger>
+              <AccordionContent>{event.refund}</AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-              <AccordionTrigger>Is it animated?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It's animated by default, but you can disable it if you
-                prefer.
-              </AccordionContent>
+              <AccordionTrigger>Participant Guidelines</AccordionTrigger>
+              <AccordionContent>{event.guidelines}</AccordionContent>
             </AccordionItem>
           </Accordion>
 

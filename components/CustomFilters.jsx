@@ -16,7 +16,7 @@ const CustomFilters = ({ allEvents, setFilteredEvents }) => {
   };
 
   return (
-    <div className="px-6 sm:px-16 border-t sticky top-0 bg-white">
+    <div className="px-6 sm:px-16 border-t sticky top-0 z-10 bg-white">
       <Carousel>
         <CarouselContent className='flex flex-none'>
           <CarouselItem className="flex gap-10 mt-5 overflow-scroll">

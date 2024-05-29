@@ -1,11 +1,9 @@
-import React from 'react'
-
-const CustomButton = ({ buttonStyles, buttonText }) => {
+const CustomButton = ({ buttonStyles, buttonText, click }) => {
   return (
-    <button className={`${buttonStyles}`}>
-        {buttonText}
+    <button className={`${buttonStyles}`} onClick={click}>
+      {buttonText}
     </button>
-  )
-}
+  );
+};
 
-export default CustomButton
+export default CustomButton;

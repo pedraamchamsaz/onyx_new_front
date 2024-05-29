@@ -1,13 +1,10 @@
 import Logo from "./Logo";
 import Image from "next/image";
-import { Titan_One } from "next/font/google";
-import NavItems from "./NavItems";
 import {
   RegisterLink,
   LoginLink,
   LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
-import { headerLinks } from "@/constants";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,16 +13,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-const titan_one = Titan_One({
-  weight: "400",
-  subsets: ["latin"],
-});
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import Link from "next/link";
 import CustomButton from "./CustomButton";
+import { useToast } from "@/components/ui/use-toast";
 
 const Navbar = () => {
   const { user } = useKindeBrowserClient();
+  const { toast } = useToast();
 
   return (
     <header className="w-full absolute z-10">
@@ -39,14 +34,26 @@ const Navbar = () => {
         </div> */}
 
         <div className="flex items-center gap-10">
-
-          <Link href='/create' className="max-md:hidden" target='_blank'>
+          {user ? (
+            <Link href="/create" className="max-md:hidden" target="_blank">
+              <CustomButton
+                buttonStyles="text-sm font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-full px-6 py-3 max-w-[200px] hover:scale-105 transition"
+                buttonText="CREATE EVENT +"
+              />
+            </Link>
+          ) : (
             <CustomButton
-              buttonStyles="text-sm font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-full px-6 py-3 max-w-[200px] hover:scale-105 transition"
+              buttonStyles="max-md:hidden text-sm font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-full px-6 py-3 max-w-[200px] hover:scale-105 transition"
               buttonText="CREATE EVENT +"
+              click={() => {
+                toast({
+                  title: "Uh oh!",
+                  description: `Please log in to create events`,
+                });
+              }}
             />
-          </Link>
-          <Link href='/create' className="md:hidden" target='_blank'>
+          )}
+          <Link href="/create" className="md:hidden" target="_blank">
             <CustomButton
               buttonStyles="text-2xl font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-full px-6 py-1 w-[80px] hover:scale-105 transition"
               buttonText="+"
@@ -107,10 +114,10 @@ const Navbar = () => {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Link href='/'>Profile</Link>
+                  <Link href={`/users/${user.id}`}>Profile</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href='/create'>Create Event</Link>
+                  <Link href="/create">Create Event</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
